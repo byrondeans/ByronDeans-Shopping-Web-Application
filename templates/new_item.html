@@ -1,0 +1,68 @@
+<html>
+<!--
+
+Copyright 2022 Ashley Byron Deans
+
+Byron Deans London Publishing Limited (of 18 Cervantes Court, Northwood, Middlesex England HA6 1AL, Registered Number 12271552) hereby disclaims all copyright interest in the program "The ByronDeans Shopping Web Application" (which helps people shop) written by Ashley Byron Deans.
+
+Byron Deans, 19 November 2022
+Ashley Byron Deans, Director of Byron Deans London Publishing Limited 
+
+
+This file is part of the ByronDeans Shopping Web Application.
+
+The ByronDeans Shopping Web Application is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+The ByronDeans Shopping Web Application program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
+
+-->
+<head><title>ByronsList</title>
+<script>
+function myFunc1() {
+var prod = document.getElementById("products");
+var selectedvalue = prod.options[prod.selectedIndex].value;
+var test = "2";
+if(selectedvalue != "0") {
+	document.getElementById("item_name").disabled = true;
+} else {
+	document.getElementById("item_name").disabled = false;
+}
+
+}
+
+function myFunc2() {
+	document.getElementById("item_name").disabled = true;
+}
+
+
+</script>
+</head>
+<body>
+<a href=" {{ url_for('select_items') }} ">Select Item</a><br><br>
+{%if cont %}
+You have inserted item {{ what_was_inserted[0] }} at the price of {{ what_was_inserted[1] }}.  <a href="{{ url_for('select_items') }}">Continue</a>
+{% else %}
+
+<form action="{{ url_for('new_item') }}" method="post">
+<select name="stores" id="stores">
+{% for store in stores %}
+<option value="{{ store[0] }}" {% if store[0] == store_id_from_get %} selected {% endif %}>{{ store[1] }}</option>
+{% endfor %}
+</select>
+Item name: <select name="products" id="products" onchange='myFunc1()'>
+<option value="-1">--Select Product--</option>
+<option value="0" id="new_select">New</option>
+{% for product in products %}
+<option value="{{ product[0] }}" {% if product[0] == product_id_from_get %} selected {% endif %}>{{ product[1] }}</option>
+{% endfor %}
+</select>
+
+<input type="text" id="item_name" name="item_name" disabled>
+&nbsp; Price: <input type="text" id="price" name="price" maxlength="7" size="7">
+<input type="submit" value="Submit">
+</form>
+{% endif %}
+</body>
+</html>

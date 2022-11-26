@@ -1,0 +1,4 @@
+{% if removed_region %}
+<br><br>
+You have successfully removed a region.  <a href="{{ url_for('select_region', country_id=country_id) }}">Continue</a>.
+{% endif %}

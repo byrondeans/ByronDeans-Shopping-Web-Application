@@ -1,0 +1,37 @@
+<html>
+<!--
+
+Copyright 2022 Ashley Byron Deans
+
+Byron Deans London Publishing Limited (of 18 Cervantes Court, Northwood, Middlesex England HA6 1AL, Registered Number 12271552) hereby disclaims all copyright interest in the program "The ByronDeans Shopping Web Application" (which helps people shop) written by Ashley Byron Deans.
+
+Byron Deans, 19 November 2022
+Ashley Byron Deans, Director of Byron Deans London Publishing Limited 
+
+
+This file is part of the ByronDeans Shopping Web Application.
+
+The ByronDeans Shopping Web Application is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+The ByronDeans Shopping Web Application program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
+
+-->
+<head><title>ByronsList</title>
+</head>
+<body>
+		{% if nosubmit==1 %}	
+		Welcome!  Create a new user account below.<br><br>
+		<form action=" {{ url_for('register_new_user') }} " method="post">
+			Username: <input type="text" name="username">
+			Password: <input type="password" name="password">
+			<button>Submit</button>
+		</form>
+                {{ message }}
+		{% else %}
+		{{ message }}<br><br><a href=" {{ url_for('index') }} ">Get Started</a>
+		<p>
+		{% endif %}
+</body>
+</html>
